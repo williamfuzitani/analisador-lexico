@@ -21,15 +21,15 @@ function handleFile(input) {
 }
 
 function tokenizer(str) {
-  const regex = /".*?"|System.out.println|[a-zA-Z_][a-zA-Z0-9_]*|[0-9]+|\++|--|>=|=<|==|&&|!=|,|\.|\+|\{|\}|\(|\)|\<|\=|\-|\*|\;|\[|\]/gm;
+  const regex = /".*?"|System.out.println|[a-zA-Z_][a-zA-Z0-9_]*|[0-9]+|%=|\/=|\*=|\+=|-=|\++|--|>=|<=|>>|<<|&&|==|!=|\.|\,|\;|\+|\-|\=|\*|\/|\{|\}|\(|\)|\<|\>|\[|\]|\%|\||\!/gm;
 
   let m;
   let tokens = []
   
   let TiposDeDados = ['byte', 'short', 'int', 'long', 'float', 'double', 'char', 'boolean', 'String']
   let PalavraReservada = ['main', 'this', 'length', 'static', 'extends', 'class', 'public', 'true', 'false', 'static', 'void', 'System.out.println', 'new', 'if', 'else', 'then', 'return', 'byte', 'short', 'int', 'long', 'float', 'double', 'char', 'boolean', 'String', 'while']
-  let SimboloSimples = ['=', ';', '*', '+', '-', '>', '<', '(', ')', '[', ']', '{', '}', '.', '!', '/', ',']
-  let SimboloComposto = ['>=', '<=', '==', '&&', '||', '!=']
+  let SimboloSimples = ['=', ';', '*', '+', '-', '>', '<', '(', ')', '[', ']', '{', '}', '.', '!', '/', ',', '%', '|']
+  let SimboloComposto = ['%=', '/=', '*=', '+=', '-=', '>=', '<=', '==', '&&', '||', '!=', '>>', '<<']
   let LITERAL = /[0-9]+/
   let LITERAL_STRING = /".*?"/
   
