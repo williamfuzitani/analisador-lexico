@@ -1,10 +1,11 @@
 const fs = require("fs")
 
-handleFile()
+let arquivo = process.argv[2]
+handleFile(arquivo)
 
-function handleFile() {
-  let file = "Factorial.java"
-  let stream = fs.createWriteStream("output.txt", { flags: 'a'})
+function handleFile(input) {
+  let file = input
+  let stream = fs.createWriteStream("output.txt")
   let token
   
   // Read File
@@ -26,7 +27,7 @@ function tokenizer(str) {
   let tokens = []
   
   let TiposDeDados = ['byte', 'short', 'int', 'long', 'float', 'double', 'char', 'boolean', 'String']
-  let PalavraReservada = ['this.', 'class', 'public', 'static', 'void', 'System.out.println', 'new', 'if', 'else', 'then', 'return', 'byte', 'short', 'int', 'long', 'float', 'double', 'char', 'boolean', 'String']
+  let PalavraReservada = ['main', 'this.', 'class', 'public', 'static', 'void', 'System.out.println', 'new', 'if', 'else', 'then', 'return', 'byte', 'short', 'int', 'long', 'float', 'double', 'char', 'boolean', 'String']
   let SimboloSimples = ['=', ';', '*', '+', '-', '>', '<', '(', ')', '[', ']', '{', '}']
   let SimboloComposto = ['>=', '<=', '==', '&&', '||', '!=']
   let LITERAL = /[0-9]+/
