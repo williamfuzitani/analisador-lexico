@@ -21,7 +21,7 @@ function handleFile(input) {
 }
 
 function tokenizer(str) {
-  const regex = /".*?"|this.|System.out.println|[a-zA-Z_][a-zA-Z0-9_]*|[0-9]+|\{|\}|\(|\)|\<|\=|\-|\*|\;|\[|\]|\.|\+|>=|<=|==|&&|!=|,/gm;
+  const regex = /".*?"|System.out.println|[a-zA-Z_][a-zA-Z0-9_]*|[0-9]+|\{|\}|\(|\)|\<|\=|\-|\*|\;|\[|\]|\.|\+|>=|<=|==|&&|!=|,/gm;
 
   let m;
   let tokens = []
