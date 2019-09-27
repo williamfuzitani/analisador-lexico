@@ -32,7 +32,7 @@ function tokenizer(str) {
   let SimboloComposto = ['%=', '/=', '*=', '+=', '-=', '>=', '<=', '==', '&&', '||', '!=', '>>', '<<']
   let LITERAL = /[0-9]+/
   let LITERAL_STRING = /".*?"/
-  
+  var contador = 0
   // Remove os comentários e testa os matchs
   while ((m = regex.exec(str.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1'))) !== null) {
       if (m.index === regex.lastIndex) {
@@ -42,27 +42,34 @@ function tokenizer(str) {
       m.forEach((match) => {
        // Checa se é TipoDeDado
        if (TiposDeDados.includes(match)) {
-            tokens.push({ type: 'PR', value: match })
+		   contador++
+           tokens.push({id: contador, type: 'PR', value: match })
        // Checa se é PalavraReservada 
        } else if (PalavraReservada.includes(match)) {
-            tokens.push({ type: 'PR', value: match })
+           contador++           
+		   tokens.push({id: contador, type: 'PR', value: match })
        // Checa se é SimboloSimples     
        } else if (SimboloSimples.includes(match)) {
-            tokens.push({ type: 'SS', value: match })
+          contador++          
+		  tokens.push({id: contador, type: 'SS', value: match })
        // Checa se é SimboloComposto     
        } else if (SimboloComposto.includes(match)) {
-            tokens.push({ type: 'SC', value: match})
+          contador++          
+		  tokens.push({id: contador, type: 'SC', value: match})
        // Checa se é LITERAL     
        } else if (LITERAL.test(match)) {
-            tokens.push({ type: 'LIT', value: match})
+		  contador++          
+		  tokens.push({id: contador, type: 'LIT', value: match})
        // Checa se é STRING     
        } else if (LITERAL_STRING.test(match)) {
-            tokens.push({ type: 'STRING', value: match })
+		  contador++          
+		  tokens.push({id: contador, type: 'STRING', value: match })
        // Se não for nenhum dos outros então deve ser um Identificador     
        } else {
-            tokens.push({ type: 'ID', value: match })
+            tokens.push({id: contador, type: 'ID', value: match })
        }
       })
   }
+  console.log(tokens)
   return tokens
 }
